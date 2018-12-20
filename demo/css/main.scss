@@ -1,0 +1,160 @@
+@import "~susy/sass/susy";
+$susy: (
+    columns: 12,
+    gutters: 1/4,
+    gutter-position: 'after',
+    global-box-sizing: border-box,
+    /*
+    debug: (
+        image: show,
+        color: rgba(#66b3dc, 0.25),
+        output: background,
+        toggle: top right
+    )
+    */
+);
+
+$container-style: 'fluid';
+$body-background-color: #fff;
+
+$chart-background-color: #fff;
+$chart-min-height: 320px;
+$spark-chart-min-height: 200px;
+$chart-heading-font-size: 18px;
+$chart-axis-line-color: rgba(170,170,170,0.5);
+
+$tab-background-color: #e5e5e5;
+
+*,
+*:before,
+*:after {
+ -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+}
+
+body {
+  background-color: $body-background-color;
+  margin: 30px 0;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+}
+
+.tabs-navigation {
+  padding: 0 50px;
+}
+
+.tabs-menu {
+  display: table;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tabs-menu-item {
+  float: left;
+  margin-right: 20px;
+}
+
+.tabs-menu-item a {
+  cursor: pointer;
+  display: block;
+  padding: 0 10px;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 0;
+  color: #a9a9a9;
+}
+
+.tabs-menu-item:not(.is-active) a:hover,
+.tabs-menu-item.is-active a {
+  background: $tab-background-color;
+  border: 1px solid #ddd;
+  border-top: 2px solid #3498db;
+  border-bottom: 0;
+  color: #333;
+}
+
+.tab-panel {
+  padding: 50px 0;
+  background-color: $tab-background-color;
+  box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  overflow: auto;
+}
+
+div.charts {
+  @include container(90%);
+}
+
+section.chart {
+  box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  border-radius: 5px;
+  padding: 10px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  h1 {
+    font-size: $chart-heading-font-size;
+    font-weight: 300;
+    text-align: center;
+  }
+  &.last {
+    margin-right: 0;
+  }
+
+  svg {
+    margin: 0 auto;
+    display: block;
+    .axis {
+      .tick {
+        line {
+          stroke: $chart-axis-line-color;
+        }
+      }
+    }
+  }
+}
+
+section.chart {
+  min-height: $chart-min-height;
+
+  background-color: $chart-background-color;
+
+  &.spark {
+    min-height: $spark-chart-min-height;
+    svg {
+      box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    }
+  }
+}
+
+div.tip {
+   dl {
+    min-width:10em;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    border-radius: 5px;
+    font-size: smaller;
+    background-color: #fff;
+    border: 3px double #ccc;
+    padding: 0.5em;
+  }
+  dt {
+    float: left;
+    clear: left;
+    text-align: left;
+    font-weight: bold;
+  }
+  dt:after {
+    content: ":";
+  }
+  dd {
+    /*margin: 0 0 0 110px;*/
+    /*padding: 0 0 0.5em 0;*/
+  }
+}
+
+@media (min-width: 768px){
+  section.chart{
+    @include span(6 of 12);
+  }
+}
+
